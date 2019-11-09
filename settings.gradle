@@ -2,3 +2,4 @@ rootProject.name = 'java-webservices'
 
 include 'jaxws:jaxws-services'
 include 'jaxws:jaxws-client'
+include 'jaxws:jaxws-soapui'

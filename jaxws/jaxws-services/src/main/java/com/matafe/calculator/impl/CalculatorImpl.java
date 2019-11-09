@@ -19,17 +19,18 @@ public class CalculatorImpl implements Calculator {
     private static final Logger LOG = LogManager.getLogger(CalculatorImpl.class);
 
     @Override
-    public int sum(int a, int b) {
-	LOG.debug("Sum {} + {} = {}");
-	int r = a + b;
-	// System.out.println(a + " + " + b + " = " + r);
-	LOG.debug("Sum {} + {} = {}", a, b, r);
-	return r;
+    public int sum(final int a, final int b) {
+	final int result = a + b;
+	LOG.debug("Sum: ({} + {}) = {}", a, b, result);
+	return result;
     }
 
     @Override
-    public double division(int a, int b) {
-	double result = a / b;
+    public double division(final int a, final int b) {
+	// week implementation!!!
+	// n / 0 -> ArithmeticException
+	final double result = a / b;
+	LOG.debug("Div: ({} / {}) = {}", a, b, result);
 	return result;
     }
 
