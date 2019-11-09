@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.8">
-<title>Java WS Implementation</title>
+<title>Java WS Server Implementation</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -432,7 +432,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Java WS Implementation</h1>
+<h1>Java WS Server Implementation</h1>
 <div class="details">
 <span id="revnumber">version 1.0</span>
 </div>
@@ -466,11 +466,72 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_enabling_ssl_on_tomcat">Enabling SSL on Tomcat</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use <a href="https://localhost:8443/jaxws-services/" class="bare">https://localhost:8443/jaxws-services/</a></p>
+</div>
+<div class="paragraph">
+<p>Creating a Keystore file using JDK.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ keytool -genkey -keyalg RSA -alias jaxws-services -keystore jaxws-services-pk.jks -storepass jaxws-services -validity 3600 -keysize 2048</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Converting to standard format PKCS12</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$ keytool -importkeystore -srckeystore jaxws-services-pk.jks -destkeystore jaxws-services-pk.jks -deststoretype pkcs12</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_tomcat_config_server_xml">tomcat &gt; config &gt; server.xml</h3>
+<div class="literalblock">
+<div class="content">
+<pre>&lt;Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+              maxThreads="150" scheme="https" secure="true"
+              clientAuth="false" sslProtocol="TLS"
+       keystoreFile="/opt/java/jaxws-services-pk.jks"
+       keystorePass="jaxws-services" /&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Done! You can access <a href="https://localhost:8443/jaxws-services/" class="bare">https://localhost:8443/jaxws-services/</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_exporting_the_certificate_to_send_to_the_client">Exporting the certificate to send to the client</h3>
+<div class="literalblock">
+<div class="content">
+<pre>$ keytool -export -alias jaxws-services -file jaxws-services-certfile.cer -keystore jaxws-services-pk.jks</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup_client_side_other_side">Setup client side (other side)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After certificate has been receive by the client:</p>
+</div>
+<div class="sect2">
+<h3 id="_importing_the_certificate">Importing the certificate</h3>
+<div class="paragraph">
+<p>$ keytool -import -alias jaxws-services -file axws-services-certfile.cer -keystore jaxws-services-pb.jks</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2019-11-09 16:58:01 UTC
+Last updated 2019-11-09 21:09:21 UTC
 </div>
 </div>
 </body>
