@@ -6,7 +6,7 @@ plugins {
     id 'maven-publish'
 }
 
-mainClassName = 'App'
+mainClassName = 'com.matafe.calculator.client.CalculatorClient'
 
 dependencies {
     //compile 'com.google.guava:guava:23.0'

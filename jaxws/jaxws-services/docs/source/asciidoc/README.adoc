@@ -46,6 +46,8 @@ Done! You can access https://localhost:8443/jaxws-services/
 
 After certificate has been receive by the client:
 
-=== Importing the certificate
+=== Importing the certificate on the client
 
-$ keytool -import -alias jaxws-services -file axws-services-certfile.cer -keystore jaxws-services-pb.jks
+ $ sudo keytool -import -alias jaxws-services -file jaxws-services-certfile.cer -keystore ${JAVA_HOME}/jre/lib/security/cacerts
+
+the default passwork is: *changeit*

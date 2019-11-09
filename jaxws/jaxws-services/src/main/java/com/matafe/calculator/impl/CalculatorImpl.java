@@ -13,7 +13,7 @@ import com.matafe.calculator.Calculator;
  * @author matafe@gmail.com
  */
 // endpointInterface -> delegate @WebService for the Interface
-@WebService(endpointInterface = "com.matafe.calculator.Calculator", serviceName = "CalculatorService", portName = "CalculatorPort")
+@WebService(endpointInterface = "com.matafe.calculator.Calculator", serviceName = "CalculatorService", portName = "CalculatorPort", targetNamespace = "http://calculator.matafe.com/")
 public class CalculatorImpl implements Calculator {
 
     private static final Logger LOG = LogManager.getLogger(CalculatorImpl.class);
