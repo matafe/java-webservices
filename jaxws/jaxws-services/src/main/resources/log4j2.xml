@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- -Dlog4j.configurationFile= override this file -->
+<Configuration
+	xmlns="http://logging.apache.org/log4j/2.0/config">
+	<Appenders>
+		<!-- File Appender -->
+		<File name="FILE" fileName="${sys:logPath:-/tmp/logs}/application.log"
+			append="true">
+			<PatternLayout
+				pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n" />
+		</File>
+		<!-- Console Appender -->
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<!-- INFO  | 2019-01-31 06:17:07 | [main] log4j2.Main (Main.java:13) - Info Sample Message -->
+			<!--<PatternLayout pattern="%-5p | %d{yyyy-MM-dd HH:mm:ss} | [%t] %C{2} (%F:%L) - %m%n" />-->
+			<PatternLayout pattern="%d %-5p [%c{1}] - %m%n" /> 
+			<!-- 2019-01-31 06:16:03,060 INFO  [Main] - Info Sample Message  -->
+		</Console>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.matafe" level="debug" />
+		<Root level="info">
+			<AppenderRef ref="STDOUT" />
+			<AppenderRef ref="FILE" />
+		</Root>
+	</Loggers>
+</Configuration>

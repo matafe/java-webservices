@@ -1,0 +1,14 @@
+= Java WS Implementation
+
+This is an example project that demonstrates how to create a web service using a the Java WS default implementation.
+
+== Usage
+
+You need to generate the war file or deploy it.
+
+ $ ./gradlew build
+
+If you need generate this documentation
+
+ $ ./gradlew asciidoctor
+

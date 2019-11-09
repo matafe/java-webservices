@@ -1,0 +1,14 @@
+= Java WS Client Implementation
+
+This is an example project that demonstrates how to create a client web service using JAX-WS.
+
+== Usage
+
+You need to generate the jar
+
+ $ ./gradlew build
+
+If you need generate this documentation
+
+ $ ./gradlew asciidoctor
+

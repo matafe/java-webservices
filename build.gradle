@@ -1,0 +1,17 @@
+allprojects {
+    if (it.childProjects.size() == 0){
+    	println "$it"
+    	repositories {
+        	jcenter()
+    	}
+    }
+}
+
+task listrepos {
+    doLast {
+        println "Repositories:"
+        project.repositories.each { println "Name: " + it.name + "; url: " + it.url }
+   }
+}
+
+defaultTasks 'clean', 'build'

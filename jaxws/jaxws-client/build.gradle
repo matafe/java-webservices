@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'eclipse-wtp'
+    id 'org.asciidoctor.convert' version '2.3.0'
+    id 'maven-publish'
+}
+
+mainClassName = 'App'
+
+dependencies {
+    //compile 'com.google.guava:guava:23.0'
+    // servlet 4
+    //compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    // jsp 2.3
+    //compileOnly 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+    // jstl
+    //runtimeOnly 'javax.servlet:jstl:1.2'    
+    // jax-ws
+	//implementation 'com.sun.xml.ws:jaxws-rt:2.3.2'
+    
+    // log4j2
+	implementation 'org.apache.logging.log4j:log4j-api:2.12.1'
+	runtimeOnly 'org.apache.logging.log4j:log4j-core:2.12.1'
+    
+    
+    // junit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    // junit 5 runtimes
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.5.2'
+}
+
+asciidoctor {
+  sourceDir  file('docs/source')
+  outputDir  file('docs/output')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'repo'
+            url = "file://${buildDir}/repo"
+        }
+    }
+}
