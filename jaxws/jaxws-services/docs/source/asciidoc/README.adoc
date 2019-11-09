@@ -1,4 +1,4 @@
-= Java WS Implementation
+= Java WS Server Implementation
 
 This is an example project that demonstrates how to create a web service using a the Java WS default implementation.
 
