@@ -4,8 +4,7 @@
 	version="3.1">
 	<listener>
 		<listener-class>
-			com.sun.xml.ws.transport.http.servlet.WSServletContextListener
-		</listener-class>
+			com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
 	</listener>
 	<servlet>
 		<servlet-name>JAXWSServlet</servlet-name>
@@ -22,4 +21,16 @@
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
+<!-- 
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>securedapp</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+-->
+
 </web-app>

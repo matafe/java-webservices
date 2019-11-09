@@ -12,3 +12,40 @@ If you need generate this documentation
 
  $ ./gradlew asciidoctor
 
+
+== Enabling SSL on Tomcat
+
+To use https://localhost:8443/jaxws-services/
+
+Creating a Keystore file using JDK.
+
+ $ keytool -genkey -keyalg RSA -alias jaxws-services -keystore jaxws-services-pk.jks -storepass jaxws-services -validity 3600 -keysize 2048
+
+Converting to standard format PKCS12 
+
+ $ keytool -importkeystore -srckeystore jaxws-services-pk.jks -destkeystore jaxws-services-pk.jks -deststoretype pkcs12
+
+=== tomcat > config > server.xml
+ 
+ <Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+               maxThreads="150" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" 
+	       keystoreFile="/opt/java/jaxws-services-pk.jks"
+	       keystorePass="jaxws-services" />
+
+
+
+
+Done! You can access https://localhost:8443/jaxws-services/
+
+=== Exporting the certificate to send to the client
+
+ $ keytool -export -alias jaxws-services -file jaxws-services-certfile.cer -keystore jaxws-services-pk.jks
+
+== Setup client side (other side)
+
+After certificate has been receive by the client:
+
+=== Importing the certificate
+
+$ keytool -import -alias jaxws-services -file axws-services-certfile.cer -keystore jaxws-services-pb.jks
