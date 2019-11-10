@@ -21,6 +21,8 @@ Creating a Keystore file using JDK.
 
  $ keytool -genkey -keyalg RSA -alias jaxws-services -keystore jaxws-services-pk.jks -storepass jaxws-services -validity 3600 -keysize 2048
 
+TIP: Use 'localhost' as your name when asked  (CN) for develepment purposes to avoid certificate exception!
+
 Converting to standard format PKCS12 
 
  $ keytool -importkeystore -srckeystore jaxws-services-pk.jks -destkeystore jaxws-services-pk.jks -deststoretype pkcs12

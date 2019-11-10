@@ -12,3 +12,12 @@ If you need generate this documentation
 
  $ ./gradlew asciidoctor
 
+== Setup the client to use HTTPS (port 8443)
+
+After certificate has been receive by the client:
+
+=== Importing the certificate on the client
+
+ $ sudo keytool -import -alias jaxws-services -file jaxws-services-certfile.cer -keystore ${JAVA_HOME}/jre/lib/security/cacerts
+
+the default passwork is: *changeit*

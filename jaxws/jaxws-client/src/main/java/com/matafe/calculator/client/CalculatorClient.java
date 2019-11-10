@@ -2,9 +2,6 @@ package com.matafe.calculator.client;
 
 import java.net.URL;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
@@ -17,19 +14,18 @@ import com.matafe.calculator.Calculator;
  */
 public class CalculatorClient {
 
-    static {
-	// for localhost testing only
-	HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-	    @Override
-	    public boolean verify(String hostname, SSLSession sslSession) {
-		System.out.println(hostname);
-		if (hostname.equals("localhost")) {
-		    return true;
-		}
-		return false;
-	    }
-	});
-    }
+//    static {
+//	// for localhost testing only
+//	HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+//	    @Override
+//	    public boolean verify(String hostname, SSLSession sslSession) {
+//		if (hostname.equals("localhost")) {
+//		    return true;
+//		}
+//		return false;
+//	    }
+//	});
+//    }
 
     public void sum(int a, int b) throws Exception {
 
